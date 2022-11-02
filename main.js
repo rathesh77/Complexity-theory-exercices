@@ -11,4 +11,7 @@ list.insertAt(24, 3);
 list.pushBack(34);
 list.pushFront(2);
 
-console.log(list);
+list.deleteAt(6);
+
+
+list.display()

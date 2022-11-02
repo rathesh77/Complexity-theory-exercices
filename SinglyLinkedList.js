@@ -23,15 +23,6 @@ class SinglyLinkedList {
       this.pushBack(val);
       return newNode;
     }
-    /*     
-  if (position == 0) {
-      let temp = this.head
-      this.head = newNode
-      newNode.next = temp
-      this.size++
-      
-      return newNode
-    } */
 
     let ptr = this.head;
 
@@ -52,12 +43,6 @@ class SinglyLinkedList {
   }
 
   size() {
-    /* let ptr = this.head
-    let size = 0
-    while (ptr.next) {
-      ptr = ptr.next
-      size++
-    } */
     return this.size;
   }
 
@@ -65,6 +50,11 @@ class SinglyLinkedList {
     if (position > this.size - 1 || position < 0) {
       return -1;
     }
+    if (position == 0) {
+      this.head = this.head.next
+      return this.head
+    }
+
     let ptr = this.head;
 
     while (position >= 2) {
@@ -92,11 +82,15 @@ class SinglyLinkedList {
   pushBack(val) {
     let newNode = new SinglyLinkedListNode(val);
 
+    if (this.size == 0) {
+      this.pushFront(val)
+      
+      return newNode
+    }
     if (this.size == 1) {
       this.tail = newNode;
       this.head.next = newNode;
       this.size++;
-
       return this.tail;
     }
 
@@ -110,10 +104,27 @@ class SinglyLinkedList {
   pushFront(val) {
     let newNode = new SinglyLinkedListNode(val);
     let temp = this.head;
+    if (this.size == 1) {
+      this.tail = new SinglyLinkedListNode(temp)
+    }
     this.head = newNode;
     newNode.next = temp;
     this.size++;
     return this.head;
+  }
+
+  display() {
+    let ptr = this.head;
+
+    console.log('------AFFICHAGE--------')
+
+    while (ptr.next) {
+      console.log(ptr.val)
+      ptr = ptr.next;
+      
+    }
+    console.log(ptr.val)
+    console.log('-----------------------')
   }
 }
 
